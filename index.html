@@ -952,25 +952,27 @@
         <div class="wrap">
             <div class="section-head">
                 <h2 data-i18n="download.title">გადმოწერა</h2>
-                <p data-i18n="download.lead">ყველა ბმული ხსნის ბოლო ვერსიის გვერდს GitHub-ზე.</p>
+                <p data-i18n="download.lead">აირჩიეთ თქვენი სისტემა — ბოლო ვერსიის გადმოწერა პირდაპირ დაიწყება.</p>
             </div>
             <div class="downloads">
-                <a class="dl" href="https://github.com/iibekaia/cartool-public/releases/latest">
+                <a class="dl" href="#download" data-download="windows">
                     <b>Windows</b>
-                    <span data-i18n="download.windows">ინსტალერი (Setup) ან Portable — ინსტალაციის გარეშე</span>
+                    <span data-i18n="download.windows">ინსტალერი (Setup), Windows x64</span>
                     <em data-i18n="download.exe">.exe გადმოწერა →</em>
                 </a>
-                <a class="dl" href="https://github.com/iibekaia/cartool-public/releases/latest">
+                <a class="dl" href="#download" data-download="mac">
                     <b>macOS</b>
                     <span data-i18n="download.mac">Intel და Apple Silicon</span>
                     <em data-i18n="download.dmg">.dmg გადმოწერა →</em>
                 </a>
-                <a class="dl" href="https://github.com/iibekaia/cartool-public/releases/latest">
+                <a class="dl" href="#download" data-download="linux">
                     <b>Linux</b>
                     <span>x64, AppImage</span>
                     <em data-i18n="download.appimage">.AppImage გადმოწერა →</em>
                 </a>
             </div>
+            <p id="download-status" class="note" role="status" aria-live="polite"></p>
+            <noscript><p class="note">გადმოსაწერად ჩართეთ JavaScript. Enable JavaScript to download the latest version.</p></noscript>
             <p class="note" data-i18n-html="download.note"><b>პირველი გაშვება:</b> პროგრამა ჯერ ციფრულად ხელმოწერილი არ არის. Windows-ზე „Windows
                 protected your PC“ ფანჯარაში დააჭირეთ <b>More info → Run anyway</b>; macOS-ზე — მარჯვენა კლიკი →
                 <b>Open</b>.</p>
@@ -1049,8 +1051,8 @@
             'how.step1': 'Download', 'how.step1Text': 'Pick the installer for your system and install it like any other program.',
             'how.step2': 'Register your shop', 'how.step2Text': 'Enter the shop name, your name and a password: this is the administrator account.',
             'how.step3': 'Add your team and start', 'how.step3Text': 'Add employees and technicians in Settings, then the first job.',
-            'download.title': 'Download', 'download.lead': 'Every link opens the latest release page on GitHub.',
-            'download.windows': 'Installer (Setup) or Portable, no installation needed', 'download.exe': 'Download .exe →',
+            'download.title': 'Download', 'download.lead': 'Choose your system to download the latest version directly.',
+            'download.windows': 'Setup installer, Windows x64', 'download.exe': 'Download .exe →',
             'download.mac': 'Intel and Apple Silicon', 'download.dmg': 'Download .dmg →', 'download.appimage': 'Download .AppImage →',
             'download.note': '<b>First launch:</b> the app is not digitally signed yet. On Windows, in the “Windows protected your PC” window click <b>More info → Run anyway</b>; on macOS, right-click → <b>Open</b>.',
             'soon.title': 'Updates and plans', 'soon.lead': 'What we have added and what we are working on:',
@@ -1099,6 +1101,47 @@
         });
         var start = initial();
         if (start !== 'ka') apply(start);
+    })();
+
+    (function () {
+        var patterns = {
+            windows: /^cartool-Setup-.+\.exe$/i,
+            mac: /^cartool-mac-.+\.dmg$/i,
+            linux: /^cartool-linux-.+\.AppImage$/i
+        };
+        var status = document.getElementById('download-status');
+        var pending = null;
+        function latest() {
+            if (!pending) {
+                pending = fetch('https://api.github.com/repos/iibekaia/cartool-public/releases/latest', {
+                    headers: {Accept: 'application/vnd.github+json'},
+                    signal: AbortSignal.timeout(15000), cache: 'no-cache'
+                }).then(function (response) {
+                    if (!response.ok) throw new Error('Release unavailable');
+                    return response.json();
+                }).catch(function (error) { pending = null; throw error; });
+            }
+            return pending;
+        }
+        document.querySelectorAll('[data-download]').forEach(function (link) {
+            link.addEventListener('click', async function (event) {
+                event.preventDefault();
+                if (link.getAttribute('aria-busy') === 'true') return;
+                link.setAttribute('aria-busy', 'true');
+                status.textContent = document.documentElement.lang === 'en' ? 'Finding the latest installer…' : 'ბოლო ვერსიის ინსტალერის მოძიება…';
+                try {
+                    var release = await latest();
+                    var pattern = patterns[link.getAttribute('data-download')];
+                    var asset = (release.assets || []).find(function (item) { return pattern.test(item.name); });
+                    if (!asset || !asset.browser_download_url.startsWith('https://github.com/iibekaia/cartool-public/releases/download/')) throw new Error('Installer unavailable');
+                    window.location.assign(asset.browser_download_url);
+                    status.textContent = document.documentElement.lang === 'en' ? 'Download requested: ' + asset.name : 'გადმოწერა მოთხოვნილია: ' + asset.name;
+                } catch (error) {
+                    pending = null;
+                    status.textContent = document.documentElement.lang === 'en' ? 'Could not retrieve the installer. Please try again shortly.' : 'ინსტალერის მოძიება ვერ მოხერხდა. გთხოვთ, სცადოთ ხელახლა ცოტა ხანში.';
+                } finally { link.removeAttribute('aria-busy'); }
+            });
+        });
     })();
 </script>
 </body>
