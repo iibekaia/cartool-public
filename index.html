@@ -591,6 +591,24 @@
             font-size: 14px;
         }
 
+        .chip.available {
+            border-style: solid;
+            border-color: rgba(210, 255, 30, .35);
+            color: var(--lime);
+        }
+
+        .roadmap-status {
+            margin: 0 0 12px;
+            font-size: 18px;
+        }
+
+        .roadmap-note {
+            color: var(--muted);
+            font-size: 14px;
+            margin: 14px 0 32px;
+            max-width: 640px;
+        }
+
         footer {
             padding: 40px 0;
             border-top: 1px solid var(--line);
@@ -962,11 +980,17 @@
     <section class="alt">
         <div class="wrap">
             <div class="section-head">
-                <h2 data-i18n="soon.title">მალე</h2>
-                <p data-i18n="soon.lead">ვმუშაობთ შემდეგ შესაძლებლობებზე:</p>
+                <h2 data-i18n="soon.title">სიახლეები და გეგმები</h2>
+                <p data-i18n="soon.lead">რაც უკვე დაემატა და რაზეც ვმუშაობთ:</p>
             </div>
+            <h3 class="roadmap-status" data-i18n="soon.available">უკვე დამატებულია</h3>
             <div class="roadmap">
-                <span class="chip" data-i18n="soon.cloud">ქლაუდ სინქრონიზაცია და backup</span>
+                <span class="chip available" data-i18n="soon.backup">ავტომატური და ხელით Cloud backup</span>
+            </div>
+            <p class="roadmap-note" data-i18n="soon.backupNote">კომპანიასთან დაკავშირებულ Desktop აპში — მონაცემების სარეზერვო ასლის ქლაუდში ატვირთვა. რამდენიმე კომპიუტერს შორის სინქრონიზაცია ჯერ გეგმაშია.</p>
+            <h3 class="roadmap-status" data-i18n="soon.planned">მალე</h3>
+            <div class="roadmap">
+                <span class="chip" data-i18n="soon.cloud">ქლაუდ სინქრონიზაცია</span>
                 <span class="chip" data-i18n="soon.computers">რამდენიმე კომპიუტერიდან მუშაობა</span>
                 <span class="chip" data-i18n="soon.booking">ონლაინ ჩაწერა ვიზიტზე</span>
                 <span class="chip" data-i18n="soon.vin">VIN ანგარიშები</span>
@@ -1029,8 +1053,11 @@
             'download.windows': 'Installer (Setup) or Portable, no installation needed', 'download.exe': 'Download .exe →',
             'download.mac': 'Intel and Apple Silicon', 'download.dmg': 'Download .dmg →', 'download.appimage': 'Download .AppImage →',
             'download.note': '<b>First launch:</b> the app is not digitally signed yet. On Windows, in the “Windows protected your PC” window click <b>More info → Run anyway</b>; on macOS, right-click → <b>Open</b>.',
-            'soon.title': 'Coming soon', 'soon.lead': 'We are working on:',
-            'soon.cloud': 'Cloud sync and backup', 'soon.computers': 'Working from several computers', 'soon.booking': 'Online visit booking',
+            'soon.title': 'Updates and plans', 'soon.lead': 'What we have added and what we are working on:',
+            'soon.available': 'Already added', 'soon.backup': 'Automatic and manual cloud backup',
+            'soon.backupNote': 'Upload a backup of your data from the desktop app linked to your company. Sync between computers is still planned.',
+            'soon.planned': 'Coming soon',
+            'soon.cloud': 'Cloud sync', 'soon.computers': 'Working from several computers', 'soon.booking': 'Online visit booking',
             'soon.vin': 'VIN reports', 'soon.updates': 'Automatic updates'
         };
         var nodes = document.querySelectorAll('[data-i18n],[data-i18n-html]');
