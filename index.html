@@ -170,6 +170,11 @@
             position: relative;
         }
 
+        .hero-head {
+            grid-column: 1 / -1;
+            margin-bottom: -24px;
+        }
+
         .eyebrow {
             display: inline-flex;
             align-items: center;
@@ -682,7 +687,10 @@
             }
 
             .nav .btn {
-                display: none;
+                padding: 6px 12px;
+                font-size: 13px;
+                line-height: 1.25;
+                text-align: center;
             }
         }
         .nav-actions { display: flex; align-items: center; gap: 12px; }
@@ -713,7 +721,7 @@
                 <button type="button" data-lang="ka" aria-pressed="true">ქარ</button>
                 <button type="button" data-lang="en" aria-pressed="false">EN</button>
             </div>
-            <a class="btn btn-primary btn-sm" href="#download" data-i18n="nav.cta">უფასოდ გადმოწერა</a>
+            <a class="btn btn-primary btn-sm" href="https://booking.cartooli.ge" data-i18n="nav.booking">ვიზიტზე ჩაწერა</a>
         </div>
     </div>
 </header>
@@ -721,9 +729,11 @@
 <main>
     <div class="hero">
         <div class="wrap hero-grid">
-            <div>
+            <div class="hero-head">
                 <span class="eyebrow" data-i18n="hero.eyebrow">● ავტომობილი · მოტოციკლი · სატვირთო · ტრაქტორი · სხვა ტექნიკა</span>
                 <h1 data-i18n-html="hero.title">სამუშაოების დაფა და სალარო — <em>ერთ პროგრამაში</em></h1>
+            </div>
+            <div>
                 <p class="lead" data-i18n="hero.lead">ტექნიკის მიღებიდან გადახდამდე ყველაფერი ერთ ადგილას: სამუშაოს ბარათზე ამატებთ ნაწილებს
                     და მომსახურებებს, ხოლო როცა სამუშაო დასრულდება, იქვე იღებთ გადახდას. ცალკე სალარო პროგრამა, თავიდან
                     აკრეფა და დაკარგული ნაწილი აღარ გექნებათ.</p>
@@ -736,7 +746,6 @@
                         <span data-i18n="hero.download">გადმოწერა</span>
                     </a>
                     <a class="btn btn-ghost" href="#together" data-i18n="hero.how">როგორ მუშაობს ერთად?</a>
-                    <a class="btn btn-ghost" href="https://booking.cartooli.ge" data-i18n="hero.booking">ვიზიტზე ჩაწერა</a>
                 </div>
                 <p class="platforms" data-i18n-html="hero.platforms">ავტო- და მოტოსერვისი, სატვირთოს, ტრაქტორისა და სხვა ტექნიკის სახელოსნო.<br>Windows
                     · macOS · Linux — ქართული და ინგლისური ინტერფეისი</p>
@@ -995,8 +1004,7 @@
             </div>
             <p class="roadmap-note" data-i18n="soon.backupNote">კომპანიასთან დაკავშირებულ Desktop აპში — მონაცემების სარეზერვო ასლის ქლაუდში ატვირთვა. რამდენიმე კომპიუტერს შორის სინქრონიზაცია ჯერ გეგმაშია.</p>
             <p class="roadmap-note" data-i18n="soon.updatesNote">ახალი ვერსია ფონურ რეჟიმში ჩამოიტვირთება და აპის გადატვირთვისას დაყენდება. ვერსიის შემოწმება პარამეტრებიდანაც შეგიძლიათ.</p>
-            <p class="roadmap-note"><span data-i18n="soon.bookingNote">კლიენტები სერვისის გვერდზე თავად ირჩევენ ვიზიტის თავისუფალ დროს, ჯავშანი კი აპში მაშინვე ჩნდება. მანქანის მოსვლისას ერთი ღილაკით იხსნება სამუშაო.</span>
-                <a href="https://booking.cartooli.ge" data-i18n="soon.bookingLink">ჯავშნის საიტზე გადასვლა →</a></p>
+            <p class="roadmap-note"><span data-i18n="soon.bookingNote">კლიენტები სერვისის გვერდზე თავად ირჩევენ ვიზიტის თავისუფალ დროს, ჯავშანი კი აპში მაშინვე ჩნდება. მანქანის მოსვლისას ერთი ღილაკით იხსნება სამუშაო.</span></p>
             <h3 class="roadmap-status" data-i18n="soon.planned">მალე</h3>
             <div class="roadmap">
                 <span class="chip" data-i18n="soon.cloud">ქლაუდ სინქრონიზაცია</span>
@@ -1021,11 +1029,11 @@
         var en = {
             'meta.title': 'cartooli — job board and POS for vehicle service',
             'meta.description': 'cartooli is software for vehicle and equipment service shops and parts stores: a job board, clients and their vehicles, a barcode POS, stock and sales reports. Works offline.',
-            'nav.together': 'Board + POS', 'nav.features': 'Features', 'nav.how': 'How it works', 'nav.download': 'Download', 'nav.cta': 'Download free',
+            'nav.together': 'Board + POS', 'nav.features': 'Features', 'nav.how': 'How it works', 'nav.download': 'Download', 'nav.booking': 'Book a visit',
             'hero.eyebrow': '● Cars · motorcycles · trucks · tractors · other equipment',
             'hero.title': 'Job board and POS — <em>in one app</em>',
             'hero.lead': 'Everything from vehicle intake to payment in one place: add parts and services to the job card, and when the job is done take the payment right there. No separate POS software, no retyping, no lost parts.',
-            'hero.download': 'Download', 'hero.how': 'How do they work together?', 'hero.booking': 'Book a visit',
+            'hero.download': 'Download', 'hero.how': 'How do they work together?',
             'hero.platforms': 'Car and motorcycle service, truck, tractor and other equipment workshops.<br>Windows · macOS · Linux — Georgian and English interface',
             'mock.received': 'Received <span>3</span>', 'mock.oil': 'Oil change', 'mock.waiting': 'Waiting', 'mock.diagnostics': 'Diagnostics',
             'mock.inProgress': 'In progress <span>2</span>', 'mock.brakes': 'Brake pads', 'mock.working': 'In progress', 'mock.hydraulics': 'Hydraulics',
@@ -1067,7 +1075,6 @@
             'soon.planned': 'Coming soon',
             'soon.cloud': 'Cloud sync', 'soon.computers': 'Working from several computers', 'soon.booking': 'Online visit booking',
             'soon.bookingNote': 'Customers pick a free visit time on their service centre page, and the booking appears in the app at once. When the vehicle arrives, one click opens the job.',
-            'soon.bookingLink': 'Go to the booking site →',
             'soon.vin': 'VIN reports', 'soon.updates': 'Automatic updates',
             'soon.updatesNote': 'New versions download in the background and install when the app restarts. You can also check for a new version in Settings.'
         };
