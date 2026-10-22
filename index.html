@@ -976,6 +976,7 @@
             <p class="note" data-i18n-html="download.note"><b>პირველი გაშვება:</b> პროგრამა ჯერ ციფრულად ხელმოწერილი არ არის. Windows-ზე „Windows
                 protected your PC“ ფანჯარაში დააჭირეთ <b>More info → Run anyway</b>; macOS-ზე — მარჯვენა კლიკი →
                 <b>Open</b>.</p>
+            <p class="note" data-i18n-html="download.updates"><b>განახლებები:</b> Windows-ის ინსტალერით (Setup) და Linux AppImage-ით დაყენებული პროგრამა ახალ ვერსიას თავად ჩამოტვირთავს და გადატვირთვისას დააყენებს. Portable ვერსიასა და macOS-ზე პროგრამა გეტყვით, რომ ახალი ვერსია გამოვიდა, და გადმოსაწერ გვერდს გაგიხსნით.</p>
         </div>
     </section>
 
@@ -988,15 +989,16 @@
             <h3 class="roadmap-status" data-i18n="soon.available">უკვე დამატებულია</h3>
             <div class="roadmap">
                 <span class="chip available" data-i18n="soon.backup">ავტომატური და ხელით Cloud backup</span>
+                <span class="chip available" data-i18n="soon.updates">ავტომატური განახლებები</span>
             </div>
             <p class="roadmap-note" data-i18n="soon.backupNote">კომპანიასთან დაკავშირებულ Desktop აპში — მონაცემების სარეზერვო ასლის ქლაუდში ატვირთვა. რამდენიმე კომპიუტერს შორის სინქრონიზაცია ჯერ გეგმაშია.</p>
+            <p class="roadmap-note" data-i18n="soon.updatesNote">ახალი ვერსია ფონურ რეჟიმში ჩამოიტვირთება და აპის გადატვირთვისას დაყენდება. ვერსიის შემოწმება პარამეტრებიდანაც შეგიძლიათ.</p>
             <h3 class="roadmap-status" data-i18n="soon.planned">მალე</h3>
             <div class="roadmap">
                 <span class="chip" data-i18n="soon.cloud">ქლაუდ სინქრონიზაცია</span>
                 <span class="chip" data-i18n="soon.computers">რამდენიმე კომპიუტერიდან მუშაობა</span>
                 <span class="chip" data-i18n="soon.booking">ონლაინ ჩაწერა ვიზიტზე</span>
                 <span class="chip" data-i18n="soon.vin">VIN ანგარიშები</span>
-                <span class="chip" data-i18n="soon.updates">ავტომატური განახლებები</span>
             </div>
         </div>
     </section>
@@ -1055,12 +1057,14 @@
             'download.windows': 'Setup installer, Windows x64', 'download.exe': 'Download .exe →',
             'download.mac': 'Intel and Apple Silicon', 'download.dmg': 'Download .dmg →', 'download.appimage': 'Download .AppImage →',
             'download.note': '<b>First launch:</b> the app is not digitally signed yet. On Windows, in the “Windows protected your PC” window click <b>More info → Run anyway</b>; on macOS, right-click → <b>Open</b>.',
+            'download.updates': '<b>Updates:</b> installed with the Windows Setup installer or as a Linux AppImage, the app downloads new versions by itself and installs them on restart. The portable version and macOS tell you when a new version is out and open the download page.',
             'soon.title': 'Updates and plans', 'soon.lead': 'What we have added and what we are working on:',
             'soon.available': 'Already added', 'soon.backup': 'Automatic and manual cloud backup',
             'soon.backupNote': 'Upload a backup of your data from the desktop app linked to your company. Sync between computers is still planned.',
             'soon.planned': 'Coming soon',
             'soon.cloud': 'Cloud sync', 'soon.computers': 'Working from several computers', 'soon.booking': 'Online visit booking',
-            'soon.vin': 'VIN reports', 'soon.updates': 'Automatic updates'
+            'soon.vin': 'VIN reports', 'soon.updates': 'Automatic updates',
+            'soon.updatesNote': 'New versions download in the background and install when the app restarts. You can also check for a new version in Settings.'
         };
         var nodes = document.querySelectorAll('[data-i18n],[data-i18n-html]');
         var description = document.querySelector('meta[name="description"]');
